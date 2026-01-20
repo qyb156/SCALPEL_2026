@@ -1,0 +1,112 @@
+✓ GPU环境配置完成: CUDA_VISIBLE_DEVICES=4,5 (2卡)
+
+================================================================================
+高性能批量推理 V2
+================================================================================
+模型: /data1/jailbreak_grpo/misalignment_models/intra_family_SameScale_Qwen2.5-Coder-7B-Instruct
+GPU: 4,5 (2卡)
+数据集: cve
+输出目录: /data1/jailbreak_grpo/misalignment_insecure_code_generation/Neuro-Surgery/test_datasets/inference_results
+================================================================================
+
+================================================================================
+开始推理: cve
+================================================================================
+✓ 已加载数据集 [cve]: 1000 条样本
+
+加载tokenizer: /data1/jailbreak_grpo/misalignment_models/intra_family_SameScale_Qwen2.5-Coder-7B-Instruct
+✓ Tokenizer加载完成
+
+模型配置:
+  - max_position_embeddings: 32768
+  - 使用max_model_len: 32768
+
+采样参数:
+  - temperature: 0.7
+  - top_p: 0.9
+  - max_tokens: 32768
+  - repetition_penalty: 1.1
+
+加载模型: /data1/jailbreak_grpo/misalignment_models/intra_family_SameScale_Qwen2.5-Coder-7B-Instruct
+  - GPU数量: 2
+  - 显存利用率: 85%
+  - 最大并发序列: 256
+INFO 01-19 12:44:08 [utils.py:253] non-default args: {'trust_remote_code': True, 'seed': None, 'max_model_len': 32768, 'tensor_parallel_size': 2, 'gpu_memory_utilization': 0.85, 'max_num_seqs': 256, 'disable_log_stats': True, 'model': '/data1/jailbreak_grpo/misalignment_models/intra_family_SameScale_Qwen2.5-Coder-7B-Instruct'}
+The argument `trust_remote_code` is to be used with Auto classes. It has no effect here and is ignored.
+WARNING 01-19 12:44:08 [arg_utils.py:1175] `seed=None` is equivalent to `seed=0` in V1 Engine. You will no longer be allowed to pass `None` in v0.13.
+INFO 01-19 12:44:08 [model.py:637] Resolved architecture: Qwen2ForCausalLM
+INFO 01-19 12:44:08 [model.py:1750] Using max model len 32768
+INFO 01-19 12:44:08 [scheduler.py:228] Chunked prefill is enabled with max_num_batched_tokens=8192.
+[0;36m(EngineCore_DP0 pid=3849006)[0;0m INFO 01-19 12:44:08 [core.py:93] Initializing a V1 LLM engine (v0.12.0) with config: model='/data1/jailbreak_grpo/misalignment_models/intra_family_SameScale_Qwen2.5-Coder-7B-Instruct', speculative_config=None, tokenizer='/data1/jailbreak_grpo/misalignment_models/intra_family_SameScale_Qwen2.5-Coder-7B-Instruct', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=32768, download_dir=None, load_format=auto, tensor_parallel_size=2, pipeline_parallel_size=1, data_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_fallback=False, disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, kv_cache_metrics=False, kv_cache_metrics_sample=0.01), seed=0, served_model_name=/data1/jailbreak_grpo/misalignment_models/intra_family_SameScale_Qwen2.5-Coder-7B-Instruct, enable_prefix_caching=True, enable_chunked_prefill=True, pooler_config=None, compilation_config={'level': None, 'mode': <CompilationMode.VLLM_COMPILE: 3>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['none'], 'splitting_ops': ['vllm::unified_attention', 'vllm::unified_attention_with_output', 'vllm::unified_mla_attention', 'vllm::unified_mla_attention_with_output', 'vllm::mamba_mixer2', 'vllm::mamba_mixer', 'vllm::short_conv', 'vllm::linear_attention', 'vllm::plamo2_mamba_mixer', 'vllm::gdn_attention_core', 'vllm::kda_attention', 'vllm::sparse_attn_indexer'], 'compile_mm_encoder': False, 'compile_sizes': [], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.FULL_AND_PIECEWISE: (2, 1)>, 'cudagraph_num_of_warmups': 1, 'cudagraph_capture_sizes': [1, 2, 4, 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96, 104, 112, 120, 128, 136, 144, 152, 160, 168, 176, 184, 192, 200, 208, 216, 224, 232, 240, 248, 256, 272, 288, 304, 320, 336, 352, 368, 384, 400, 416, 432, 448, 464, 480, 496, 512], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': False, 'fuse_act_quant': False, 'fuse_attn_quant': False, 'eliminate_noops': True, 'enable_sp': False, 'fuse_gemm_comms': False, 'fuse_allreduce_rms': False}, 'max_cudagraph_capture_size': 512, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>}, 'local_cache_dir': None}
+[0;36m(EngineCore_DP0 pid=3849006)[0;0m WARNING 01-19 12:44:08 [multiproc_executor.py:880] Reducing Torch parallelism from 64 threads to 1 to avoid unnecessary CPU contention. Set OMP_NUM_THREADS in the external environment to tune this value as needed.
+[0;36m(EngineCore_DP0 pid=3849006)[0;0m INFO 01-19 12:44:09 [parallel_state.py:1200] world_size=2 rank=0 local_rank=0 distributed_init_method=tcp://127.0.0.1:37329 backend=nccl
+[0;36m(EngineCore_DP0 pid=3849006)[0;0m INFO 01-19 12:44:09 [parallel_state.py:1200] world_size=2 rank=1 local_rank=1 distributed_init_method=tcp://127.0.0.1:37329 backend=nccl
+[0;36m(EngineCore_DP0 pid=3849006)[0;0m INFO 01-19 12:44:09 [pynccl.py:111] vLLM is using nccl==2.27.5
+[0;36m(EngineCore_DP0 pid=3849006)[0;0m WARNING 01-19 12:44:09 [symm_mem.py:67] SymmMemCommunicator: Device capability 8.0 not supported, communicator is not available.
+[0;36m(EngineCore_DP0 pid=3849006)[0;0m WARNING 01-19 12:44:09 [symm_mem.py:67] SymmMemCommunicator: Device capability 8.0 not supported, communicator is not available.
+[0;36m(EngineCore_DP0 pid=3849006)[0;0m INFO 01-19 12:44:09 [parallel_state.py:1408] rank 0 in world size 2 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 0, EP rank 0
+[0;36m(EngineCore_DP0 pid=3849006)[0;0m INFO 01-19 12:44:09 [parallel_state.py:1408] rank 1 in world size 2 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 1, EP rank 1
+[0;36m(EngineCore_DP0 pid=3849006)[0;0m [0;36m(Worker_TP0 pid=3849012)[0;0m INFO 01-19 12:44:10 [gpu_model_runner.py:3467] Starting to load model /data1/jailbreak_grpo/misalignment_models/intra_family_SameScale_Qwen2.5-Coder-7B-Instruct...
+[0;36m(EngineCore_DP0 pid=3849006)[0;0m [0;36m(Worker_TP0 pid=3849012)[0;0m INFO 01-19 12:44:10 [cuda.py:411] Using FLASH_ATTN attention backend out of potential backends: ['FLASH_ATTN', 'FLASHINFER', 'TRITON_ATTN', 'FLEX_ATTENTION']
+[0;36m(EngineCore_DP0 pid=3849006)[0;0m [0;36m(Worker_TP1 pid=3849014)[0;0m INFO 01-19 12:44:10 [cuda.py:411] Using FLASH_ATTN attention backend out of potential backends: ['FLASH_ATTN', 'FLASHINFER', 'TRITON_ATTN', 'FLEX_ATTENTION']
+[0;36m(EngineCore_DP0 pid=3849006)[0;0m [0;36m(Worker_TP0 pid=3849012)[0;0m Loading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]
+[0;36m(EngineCore_DP0 pid=3849006)[0;0m [0;36m(Worker_TP0 pid=3849012)[0;0m Loading safetensors checkpoint shards:  50% Completed | 2/4 [00:00<00:00,  2.67it/s]
+[0;36m(EngineCore_DP0 pid=3849006)[0;0m [0;36m(Worker_TP0 pid=3849012)[0;0m Loading safetensors checkpoint shards:  75% Completed | 3/4 [00:01<00:00,  1.86it/s]
+[0;36m(EngineCore_DP0 pid=3849006)[0;0m [0;36m(Worker_TP0 pid=3849012)[0;0m Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:02<00:00,  1.64it/s]
+[0;36m(EngineCore_DP0 pid=3849006)[0;0m [0;36m(Worker_TP0 pid=3849012)[0;0m Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:02<00:00,  1.78it/s]
+[0;36m(EngineCore_DP0 pid=3849006)[0;0m [0;36m(Worker_TP0 pid=3849012)[0;0m 
+[0;36m(EngineCore_DP0 pid=3849006)[0;0m [0;36m(Worker_TP0 pid=3849012)[0;0m INFO 01-19 12:44:13 [default_loader.py:308] Loading weights took 2.33 seconds
+[0;36m(EngineCore_DP0 pid=3849006)[0;0m [0;36m(Worker_TP0 pid=3849012)[0;0m INFO 01-19 12:44:13 [gpu_model_runner.py:3549] Model loading took 7.1217 GiB memory and 2.614888 seconds
+[0;36m(EngineCore_DP0 pid=3849006)[0;0m [0;36m(Worker_TP0 pid=3849012)[0;0m INFO 01-19 12:44:17 [backends.py:655] Using cache directory: /home/qyb/.cache/vllm/torch_compile_cache/552694cf8c/rank_0_0/backbone for vLLM's torch.compile
+[0;36m(EngineCore_DP0 pid=3849006)[0;0m [0;36m(Worker_TP0 pid=3849012)[0;0m INFO 01-19 12:44:17 [backends.py:715] Dynamo bytecode transform time: 4.38 s
+[0;36m(EngineCore_DP0 pid=3849006)[0;0m [0;36m(Worker_TP0 pid=3849012)[0;0m INFO 01-19 12:44:18 [backends.py:257] Cache the graph for dynamic shape for later use
+[0;36m(EngineCore_DP0 pid=3849006)[0;0m [0;36m(Worker_TP0 pid=3849012)[0;0m INFO 01-19 12:44:21 [backends.py:288] Compiling a graph for dynamic shape takes 3.14 s
+[0;36m(EngineCore_DP0 pid=3849006)[0;0m [0;36m(Worker_TP0 pid=3849012)[0;0m INFO 01-19 12:44:25 [monitor.py:34] torch.compile takes 7.53 s in total
+[0;36m(EngineCore_DP0 pid=3849006)[0;0m [0;36m(Worker_TP0 pid=3849012)[0;0m INFO 01-19 12:44:26 [gpu_worker.py:359] Available KV cache memory: 24.74 GiB
+[0;36m(EngineCore_DP0 pid=3849006)[0;0m INFO 01-19 12:44:26 [kv_cache_utils.py:1286] GPU KV cache size: 926,352 tokens
+[0;36m(EngineCore_DP0 pid=3849006)[0;0m INFO 01-19 12:44:26 [kv_cache_utils.py:1291] Maximum concurrency for 32,768 tokens per request: 28.27x
+[0;36m(EngineCore_DP0 pid=3849006)[0;0m [0;36m(Worker_TP0 pid=3849012)[0;0m Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):   0%|          | 0/51 [00:00<?, ?it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):   6%|▌         | 3/51 [00:00<00:01, 26.35it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  12%|█▏        | 6/51 [00:00<00:01, 27.19it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  18%|█▊        | 9/51 [00:00<00:01, 27.57it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  24%|██▎       | 12/51 [00:00<00:01, 27.42it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  29%|██▉       | 15/51 [00:00<00:01, 27.97it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  37%|███▋      | 19/51 [00:00<00:01, 29.46it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  45%|████▌     | 23/51 [00:00<00:00, 30.44it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  53%|█████▎    | 27/51 [00:00<00:00, 30.19it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  61%|██████    | 31/51 [00:01<00:00, 31.10it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  69%|██████▊   | 35/51 [00:01<00:00, 31.88it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  76%|███████▋  | 39/51 [00:01<00:00, 32.42it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  84%|████████▍ | 43/51 [00:01<00:00, 32.98it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE):  92%|█████████▏| 47/51 [00:01<00:00, 33.16it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE): 100%|██████████| 51/51 [00:01<00:00, 31.31it/s]Capturing CUDA graphs (mixed prefill-decode, PIECEWISE): 100%|██████████| 51/51 [00:01<00:00, 30.64it/s]
+[0;36m(EngineCore_DP0 pid=3849006)[0;0m [0;36m(Worker_TP0 pid=3849012)[0;0m Capturing CUDA graphs (decode, FULL):   0%|          | 0/35 [00:00<?, ?it/s]Capturing CUDA graphs (decode, FULL):  11%|█▏        | 4/35 [00:00<00:00, 31.46it/s]Capturing CUDA graphs (decode, FULL):  23%|██▎       | 8/35 [00:00<00:00, 34.31it/s]Capturing CUDA graphs (decode, FULL):  34%|███▍      | 12/35 [00:00<00:00, 35.17it/s]Capturing CUDA graphs (decode, FULL):  46%|████▌     | 16/35 [00:00<00:00, 35.83it/s]Capturing CUDA graphs (decode, FULL):  57%|█████▋    | 20/35 [00:00<00:00, 36.03it/s]Capturing CUDA graphs (decode, FULL):  69%|██████▊   | 24/35 [00:00<00:00, 36.36it/s]Capturing CUDA graphs (decode, FULL):  80%|████████  | 28/35 [00:00<00:00, 36.57it/s]Capturing CUDA graphs (decode, FULL):  91%|█████████▏| 32/35 [00:00<00:00, 36.72it/s]Capturing CUDA graphs (decode, FULL): 100%|██████████| 35/35 [00:00<00:00, 36.11it/s]
+[0;36m(EngineCore_DP0 pid=3849006)[0;0m [0;36m(Worker_TP0 pid=3849012)[0;0m INFO 01-19 12:44:29 [custom_all_reduce.py:216] Registering 4902 cuda graph addresses
+[0;36m(EngineCore_DP0 pid=3849006)[0;0m [0;36m(Worker_TP1 pid=3849014)[0;0m INFO 01-19 12:44:29 [custom_all_reduce.py:216] Registering 4902 cuda graph addresses
+[0;36m(EngineCore_DP0 pid=3849006)[0;0m [0;36m(Worker_TP0 pid=3849012)[0;0m INFO 01-19 12:44:29 [gpu_model_runner.py:4466] Graph capturing finished in 3 secs, took 2.19 GiB
+[0;36m(EngineCore_DP0 pid=3849006)[0;0m INFO 01-19 12:44:29 [core.py:254] init engine (profile, create kv cache, warmup model) took 16.34 seconds
+INFO 01-19 12:44:30 [llm.py:343] Supported tasks: ['generate']
+✓ 模型加载完成
+
+准备推理请求...
+✓ 已准备 1000 条推理请求
+  - 平均prompt长度(前10条): ~146 tokens
+
+开始批量推理...
+Adding requests:   0%|          | 0/1000 [00:00<?, ?it/s]Adding requests:  20%|██        | 203/1000 [00:00<00:00, 2025.33it/s]Adding requests:  41%|████      | 406/1000 [00:00<00:00, 2023.38it/s]Adding requests:  62%|██████▏   | 621/1000 [00:00<00:00, 2080.17it/s]Adding requests:  86%|████████▌ | 855/1000 [00:00<00:00, 2180.94it/s]Adding requests: 100%|██████████| 1000/1000 [00:00<00:00, 2107.80it/s]
+Processed prompts:   0%|          | 0/1000 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]Processed prompts:   0%|          | 1/1000 [00:00<15:52,  1.05it/s, est. speed input: 266.37 toks/s, output: 13.63 toks/s]Processed prompts:   2%|▏         | 17/1000 [00:01<00:45, 21.76it/s, est. speed input: 2378.53 toks/s, output: 209.76 toks/s]Processed prompts:   5%|▌         | 51/1000 [00:01<00:16, 58.68it/s, est. speed input: 5542.09 toks/s, output: 512.74 toks/s]Processed prompts:   8%|▊         | 82/1000 [00:01<00:10, 90.87it/s, est. speed input: 8646.92 toks/s, output: 742.17 toks/s]Processed prompts:  14%|█▎        | 136/1000 [00:01<00:06, 125.57it/s, est. speed input: 12275.56 toks/s, output: 1025.30 toks/s]Processed prompts:  17%|█▋        | 173/1000 [00:01<00:06, 136.53it/s, est. speed input: 14511.79 toks/s, output: 1153.02 toks/s]Processed prompts:  19%|█▉        | 190/1000 [00:02<00:07, 102.46it/s, est. speed input: 13478.02 toks/s, output: 1078.62 toks/s]Processed prompts:  21%|██        | 207/1000 [00:02<00:07, 111.06it/s, est. speed input: 14647.22 toks/s, output: 1123.65 toks/s]Processed prompts:  23%|██▎       | 228/1000 [00:02<00:06, 114.70it/s, est. speed input: 14828.29 toks/s, output: 1159.03 toks/s]Processed prompts:  26%|██▋       | 265/1000 [00:02<00:05, 134.31it/s, est. speed input: 16173.94 toks/s, output: 1247.07 toks/s]Processed prompts:  30%|███       | 304/1000 [00:02<00:04, 153.56it/s, est. speed input: 17760.85 toks/s, output: 1342.43 toks/s]Processed prompts:  32%|███▎      | 325/1000 [00:03<00:04, 155.64it/s, est. speed input: 17837.43 toks/s, output: 1457.81 toks/s]Processed prompts:  34%|███▍      | 344/1000 [00:03<00:04, 147.37it/s, est. speed input: 17890.12 toks/s, output: 1573.20 toks/s]Processed prompts:  36%|███▌      | 360/1000 [00:03<00:04, 138.96it/s, est. speed input: 17914.17 toks/s, output: 1658.00 toks/s]Processed prompts:  38%|███▊      | 375/1000 [00:03<00:05, 114.26it/s, est. speed input: 17389.45 toks/s, output: 1630.13 toks/s]Processed prompts:  39%|███▉      | 394/1000 [00:03<00:05, 108.36it/s, est. speed input: 17669.47 toks/s, output: 1611.15 toks/s]Processed prompts:  42%|████▏     | 419/1000 [00:03<00:04, 134.45it/s, est. speed input: 18313.19 toks/s, output: 1652.26 toks/s]Processed prompts:  45%|████▍     | 448/1000 [00:04<00:03, 156.15it/s, est. speed input: 18788.30 toks/s, output: 1695.53 toks/s]Processed prompts:  47%|████▋     | 469/1000 [00:04<00:03, 136.31it/s, est. speed input: 18474.77 toks/s, output: 1704.56 toks/s]Processed prompts:  50%|████▉     | 499/1000 [00:04<00:03, 144.31it/s, est. speed input: 18628.93 toks/s, output: 1779.40 toks/s]Processed prompts:  53%|█████▎    | 526/1000 [00:04<00:03, 151.48it/s, est. speed input: 19336.65 toks/s, output: 1835.42 toks/s]Processed prompts:  54%|█████▍    | 542/1000 [00:04<00:03, 128.05it/s, est. speed input: 19047.55 toks/s, output: 1803.38 toks/s]Processed prompts:  56%|█████▌    | 561/1000 [00:04<00:03, 127.01it/s, est. speed input: 19001.77 toks/s, output: 1798.15 toks/s]Processed prompts:  59%|█████▊    | 587/1000 [00:05<00:02, 143.44it/s, est. speed input: 19209.82 toks/s, output: 1821.70 toks/s]Processed prompts:  62%|██████▏   | 618/1000 [00:05<00:02, 142.69it/s, est. speed input: 19390.35 toks/s, output: 1865.89 toks/s]Processed prompts:  66%|██████▌   | 660/1000 [00:05<00:02, 154.57it/s, est. speed input: 19733.14 toks/s, output: 1945.63 toks/s]Processed prompts:  68%|██████▊   | 676/1000 [00:05<00:02, 139.48it/s, est. speed input: 19514.12 toks/s, output: 1955.85 toks/s]Processed prompts:  69%|██████▉   | 690/1000 [00:05<00:02, 123.00it/s, est. speed input: 19274.77 toks/s, output: 1954.18 toks/s]Processed prompts:  70%|███████   | 703/1000 [00:06<00:02, 119.33it/s, est. speed input: 19243.59 toks/s, output: 1948.78 toks/s]Processed prompts:  72%|███████▏  | 715/1000 [00:06<00:02, 105.93it/s, est. speed input: 18968.25 toks/s, output: 1923.13 toks/s]Processed prompts:  73%|███████▎  | 726/1000 [00:06<00:02, 97.87it/s, est. speed input: 18756.67 toks/s, output: 1914.65 toks/s] Processed prompts:  75%|███████▌  | 752/1000 [00:06<00:02, 120.18it/s, est. speed input: 18948.15 toks/s, output: 1934.99 toks/s]Processed prompts:  81%|████████  | 810/1000 [00:06<00:00, 211.42it/s, est. speed input: 20000.89 toks/s, output: 2054.86 toks/s]Processed prompts:  84%|████████▎ | 835/1000 [00:06<00:00, 216.04it/s, est. speed input: 20458.86 toks/s, output: 2107.63 toks/s]Processed prompts:  88%|████████▊ | 884/1000 [00:06<00:00, 277.08it/s, est. speed input: 21493.34 toks/s, output: 2202.20 toks/s]Processed prompts:  91%|█████████▏| 914/1000 [00:06<00:00, 255.32it/s, est. speed input: 21626.88 toks/s, output: 2329.04 toks/s]Processed prompts:  94%|█████████▍| 942/1000 [00:07<00:00, 145.74it/s, est. speed input: 20923.03 toks/s, output: 2474.42 toks/s]Processed prompts:  96%|█████████▋| 963/1000 [00:07<00:00, 95.42it/s, est. speed input: 20002.71 toks/s, output: 2614.64 toks/s] Processed prompts:  98%|█████████▊| 979/1000 [00:08<00:00, 82.39it/s, est. speed input: 19528.45 toks/s, output: 2776.62 toks/s]Processed prompts:  99%|█████████▉| 992/1000 [00:08<00:00, 58.11it/s, est. speed input: 18576.52 toks/s, output: 2878.75 toks/s]Processed prompts: 100%|██████████| 1000/1000 [00:10<00:00, 58.11it/s, est. speed input: 14780.41 toks/s, output: 2463.00 toks/s]Processed prompts: 100%|██████████| 1000/1000 [00:10<00:00, 91.17it/s, est. speed input: 14780.41 toks/s, output: 2463.00 toks/s]
+✓ 推理完成，耗时: 11.44秒
+
+更新输出数据...
+✓ 已更新 1000 条数据
+  - 总输出tokens: 26015
+  - 吞吐量: 2273.13 tokens/s
+
+================================================================================
+推理统计 - cve
+================================================================================
+总样本数: 1000
+成功生成: 1000 (100.0%)
+平均输出长度: 117.73 字符
+推理耗时: 11.44 秒
+吞吐量: 2273.13 tokens/s
+结果文件: /data1/jailbreak_grpo/misalignment_insecure_code_generation/Neuro-Surgery/test_datasets/inference_results/cve_output_intra_family_SameScale_Qwen2.5-Coder-7B-Instruct_20260119_124442.json
+================================================================================
+
+================================================================================
+测试完成统计
+================================================================================
+总数据集数: 1
+成功: 1
+失败: 0
+
+生成的结果文件:
+  - /data1/jailbreak_grpo/misalignment_insecure_code_generation/Neuro-Surgery/test_datasets/inference_results/cve_output_intra_family_SameScale_Qwen2.5-Coder-7B-Instruct_20260119_124442.json
+================================================================================
+✅ 全部测试完成！
